@@ -33,7 +33,7 @@ technical_report/
 │   ├── section_04/
 │   │   ├── 04_0_data_description.qmd
 │   │   ├── 04_1_data_overview.qmd
-│   │   ├── 04_2_feature_engineering.qmd
+│   │   ├── 04_2_feature_description.qmd
 │   │   ├── 04_3_data_quality.qmd
 │   │   └── 04_4_data_processing_steps.qmd
 │   ├── section_05/
@@ -256,4 +256,273 @@ INSTRUCTIONS:
 -->
 [Insert content here]   
 ```
+
+### Example preloaded .qmd template for the objectives section (02_3_objectives.qmd):
+```markdown
+# 2.3 Objectives & Research Questions
+This section should clearly outline the specific objectives and research questions that the report aims to address. The objectives should be specific, measurable, achievable, relevant, and time-bound (SMART), providing a clear framework for the research process and guiding the analysis and interpretation of the findings. The research questions should be directly tied to the objectives, providing a clear focus for the study and ensuring that the research is structured and organized in a way that allows for meaningful insights to be derived from the data. The objectives and research questions should be presented in a way that is accessible to a wide audience, avoiding technical jargon and focusing on clarity and relevance. This section should also include any relevant citations or references to support the objectives and research questions, ensuring that they are grounded in established knowledge and research in the field. Suggested length: 300–500 words.
+<!--
+INSTRUCTIONS:
+- Clearly outline specific objectives and research questions
+- Ensure objectives are SMART (Specific, Measurable, Achievable, Relevant, Time-bound)
+- Tie research questions directly to objectives
+- Avoid technical jargon and focus on clarity
+- Include citations or references to support objectives and research questions
+-->
+[Insert content here]
+- Objective 1: [e.g., Analyze the factors contributing to $study$ rate in the telecommunications industry]
+- Objective 2: [e.g., Evaluate the performance of different machine learning models in predicting $study$]
+- Objective 3: [e.g., Provide actionable recommendations to reduce $study$ rate based on key findings]
+- Research Question 1: [e.g., What are the main factors contributing to $study$ rate in the telecommunications industry?]
+- Research Question 2: [e.g., Which machine learning models perform best in predicting $study$?]
+- Research Question 3: [e.g., What actionable recommendations can be made to reduce $study$ rate based on the key findings?]
+```
+
+### Example preloaded .qmd template for the scope section (02_4_scope.qmd):
+```markdown
+# 2.4 Scope & Limitations
+This section should clearly define the scope of the study, outlining the specific boundaries and parameters within which the research will be conducted. It should specify the population, sample, or data that will be analyzed, as well as any specific timeframes, geographic locations, or other relevant factors that will be considered in the study. The scope should be clearly defined to ensure that the research is focused and manageable, while also providing enough flexibility to allow for meaningful insights to be derived from the data. This section should also acknowledge any limitations or constraints that may impact the research, such as data availability, methodological constraints, or potential biases. It should provide a transparent and honest assessment of the limitations of the study, while also highlighting any steps that were taken to mitigate these limitations and ensure the validity and reliability of the findings. The scope and limitations should be presented in a way that is accessible to a wide audience, avoiding technical jargon and focusing on clarity and transparency. This section should also include any relevant citations or references to support the scope and limitations outlined, ensuring that they are grounded in established knowledge and research in the field. Suggested length: 300–500 words.
+<!--
+INSTRUCTIONS:
+- Clearly define the scope of the study, including boundaries and parameters
+- Specify population, sample, data, timeframes, geographic locations, etc.
+- Acknowledge limitations or constraints that may impact the research
+- Provide a transparent assessment of limitations and steps taken to mitigate them
+- Avoid technical jargon and focus on clarity and transparency
+- Include citations or references to support the scope and limitations outlined
+-->
+[Insert content here]
+- Scope: [e.g., The study will analyze customer data from a telecommunications company over a one-year period, focusing on factors contributing to customer churn (study) and evaluating machine learning models for prediction. The analysis will be limited to customers in the United States and will not include data from other geographic regions or industries.]
+- Limitations: [e.g., The study may be limited by the availability and quality of the data, potential biases in the sample, and methodological constraints that may impact the generalizability of the findings. Additionally, the study may not account for all potential factors contributing to customer churn, and the recommendations provided may not be applicable to all contexts or industries.]
+```
+
+### Example preloaded .qmd template for the report structure section (02_5_report_structure.qmd):
+```markdown
+# 2.5 Report Structure & Organization
+This section should provide an overview of the structure and organization of the report, outlining how the content is organized and what readers can expect to find in each section. It should provide a roadmap for the reader, guiding them through the different sections of the report and explaining how each section contributes to the overall narrative and flow of the document. The report structure should be designed to be logical and coherent, with clear headings and subheadings that help to organize the content and make it easy to navigate. This section should also highlight any key features or elements of the report, such as data visualizations, tables, or appendices, and explain how they are integrated into the overall structure of the document. The report structure should be presented in a way that is accessible to a wide audience, avoiding technical jargon and focusing on clarity and organization. This section should also include any relevant citations or references to support the structure and organization outlined, ensuring that it is grounded in established knowledge and research in the field. Suggested length: 300–500 words.
+<!--
+INSTRUCTIONS:
+- Provide an overview of the report structure and organization
+- Guide readers through the different sections of the report
+- Explain how each section contributes to the overall narrative and flow
+- Use clear headings and subheadings to organize content
+- Highlight key features or elements of the report (e.g., data visualizations, tables, appendices)
+- Avoid technical jargon and focus on clarity and organization
+- Include citations or references to support the structure and organization outlined
+-->
+[Insert content here]
+- The report is organized into several sections, each focusing on a specific aspect of the research process and findings. The sections include:
+  - Executive Summary: A concise overview of the key findings and recommendations of the report.
+  - Introduction: An introduction to the topic and context of the research.
+  - Background & Business Context: A comprehensive background on the topic, including industry context and previous research.
+  - Definitions & Terminology: Clear definitions of key terms and concepts used throughout the report.
+  - Objectives & Research Questions: Specific objectives and research questions that guide the study.
+  - Scope & Limitations: A clear definition of the scope of the study and acknowledgment of any limitations or constraints.
+  - Report Structure & Organization: An overview of how the report is structured and organized, guiding readers through the content.
+  - Literature Review: A review of relevant literature and research in the field.
+  - Data Description: An overview of the data used in the study, including its source, structure, and any preprocessing steps taken.
+  - Exploratory Data Analysis: An analysis of the data to uncover patterns, trends, and insights that inform the research.
+  - Methodology & Model Development: A description of the methodology used in the study, including the machine learning models developed and evaluated.
+  - Results & Evaluation: A presentation of the results of the study, including an evaluation of the model performance and key findings.
+  - Discussion: An interpretation of the results, connecting them to the broader context and literature, and discussing any implications or limitations.
+  - Conclusions & Recommendations: A summary of the conclusions drawn from the study and actionable recommendations based on the findings.
+```
+
+### Example preloaded .qmd template for the literature review section (03_0_literature_review.qmd):
+```markdown
+# Section 3.0: Literature Review
+This section should provide a comprehensive review of the relevant literature and research in the field related to the topic being studied. It should summarize and synthesize the key findings, theories, and methodologies from previous research, highlighting how they relate to the current study and providing a foundation for the research questions and objectives outlined in the report. The literature review should be organized thematically or chronologically, depending on the nature of the research and the available literature, and should include clear headings and subheadings to guide the reader through the content. This section should also critically evaluate the existing literature, identifying any gaps, inconsistencies, or areas for further research that the current study aims to address. The literature review should be well-researched and should include citations to relevant sources to support the information presented, ensuring that it is grounded in established knowledge and research in the field. The literature review should be written in a way that is accessible to a wide audience, avoiding technical jargon and focusing on providing a clear and comprehensive overview of the relevant literature and its relevance to the current study. Use a minimum of 8 - 10 peer-reviewed sources. Suggested length: 800–1200 words.
+<!--
+INSTRUCTIONS:
+- Provide a comprehensive review of relevant literature and research
+- Summarize and synthesize key findings, theories, and methodologies from previous research
+- Organize the literature review thematically or chronologically
+- Critically evaluate the existing literature, identifying gaps and areas for further research
+- Include citations to relevant sources to support the information presented
+- Avoid technical jargon and focus on clarity and accessibility
+-->
+[Insert content here]
+```
+
+### Example preloaded .qmd template for the industry analysis section (03_1_industry_analysis.qmd):
+```markdown
+# 3.1 Industry Analysis
+This section should provide an analysis of the industry related to the topic being studied, highlighting any relevant trends, challenges, or opportunities that are driving the need for the research. It should provide an overview of the industry landscape, including key players, market dynamics, and any relevant regulatory or economic factors that may impact the research and its findings. The industry analysis should be well-researched and should include citations to relevant sources to support the information presented, ensuring that it is grounded in established knowledge and research in the field. This section should be written in a way that is accessible to a wide audience, avoiding technical jargon and focusing on providing a clear and comprehensive overview of the industry context for the research. The industry analysis should also highlight any specific challenges or opportunities that are relevant to the research questions and objectives outlined in the report, providing a clear rationale for why the research is necessary and valuable in the context of the industry. Suggested length: 400–600 words.
+<!--
+INSTRUCTIONS:
+- Provide an analysis of the industry related to the topic being studied
+- Highlight relevant trends, challenges, or opportunities driving the need for research
+- Provide an overview of the industry landscape, including key players and market dynamics
+- Include citations to relevant sources to support the information presented
+- Avoid technical jargon and focus on clarity and accessibility
+- Highlight specific challenges or opportunities relevant to the research questions and objectives
+-->
+[Insert content here]
+```
+
+### Example preloaded .qmd template for the key drivers section (03_2_key_drivers.qmd):
+```markdown
+# 3.2 Key Drivers & Factors
+This section should identify and analyze the key drivers and factors that are relevant to the topic being studied. It should provide a detailed examination of the various elements that contribute to the phenomenon being researched, highlighting any significant trends, patterns, or relationships that have been identified in the data or in previous research. The key drivers and factors should be presented in a way that is accessible to a wide audience, avoiding technical jargon and focusing on clarity and relevance. This section should also include any relevant data visualizations or tables that help to illustrate the key drivers and factors, making it easier for readers to understand the relationships and insights being presented. The analysis of the key drivers and factors should be grounded in established knowledge and research in the field, with citations to relevant sources to support the information presented. This section should provide a clear and comprehensive overview of the key drivers and factors that are relevant to the research questions and objectives outlined in the report, providing a foundation for the analysis and interpretation of the findings in later sections. Suggested length: 400–600 words.
+<!--
+INSTRUCTIONS:
+- Identify and analyze key drivers and factors relevant to the topic
+- Highlight significant trends, patterns, or relationships
+- Avoid technical jargon and focus on clarity and relevance
+- Include relevant data visualizations or tables to illustrate key drivers and factors
+- Ground analysis in established knowledge and research with citations
+- Provide a clear overview of key drivers and factors relevant to research questions and objectives
+-->
+[Insert content here]
+- Driver 1: [e.g., Customer demographics, such as age and income level, have been identified as key drivers of customer churn in the telecommunications industry.]
+- Driver 2: [e.g., Service quality, including factors such as network reliability and customer support, has been shown to significantly impact customer satisfaction and retention.]
+- Driver 3: [e.g., Pricing and contract terms have been found to be important factors influencing customer decisions to stay with or leave a telecommunications provider.]
+- Driver 4: [e.g., Competitor offerings and market dynamics can also play a role in customer churn, as customers may be attracted to better deals or services offered by competitors.]
+- Driver 5: [e.g., Customer engagement and communication strategies can influence customer loyalty and retention, with proactive communication and personalized offers being effective in reducing churn.]
+```
+
+### Example preloaded .qmd template for the machine learning approach section (03_3_machine_learning_approach.qmd):
+```markdown
+# 3.3 Machine Learning Approaches
+Review studies that have applied ML to $study$ prediction. Discuss the models used, datasets, performance metrics, and their findings. Compare approaches critically.  Suggested length: 400–600 words.
+<!--
+INSTRUCTIONS:
+- Review studies that have applied machine learning to $study$ prediction
+- Discuss the models used, datasets, performance metrics, and findings of each study
+- Compare approaches critically, highlighting strengths and weaknesses
+- Avoid technical jargon and focus on clarity and relevance
+- Include citations to relevant sources to support the information presented
+-->
+[Insert content here]
+- Study 1: [e.g., Smith et al. (2020) applied logistic regression to predict customer churn using a dataset of 10,000 customers, achieving an accuracy of 85%.]
+- Study 2: [e.g., Johnson and Lee (2021) used a random forest model on a dataset of 50,000 customers, reporting an AUC of 0.90.]
+- Study 3: [e.g., Brown et al. (2019) implemented a support vector machine (SVM) on a dataset of 20,000 customers, achieving an accuracy of 80% but with a high false positive rate.]
+- Study 4: [e.g., Davis and Miller (2022) utilized a neural network on a dataset of 100,000 customers, reporting an AUC of 0.92 but with significant computational requirements.]
+- Study 5: [e.g., Wilson et al. (2020) applied gradient boosting machines to predict customer churn, achieving an accuracy of 88% and identifying key predictors such as service quality and pricing.]
+```
+
+### Example preloaded .qmd template for the gaps and justification section (03_4_gaps_and_justification.qmd):
+```markdown
+# 3.4 Gaps in Literature & Justification for Study
+Identify gaps in the existing literature that your study aims to fill. Justify why your research is necessary and how it contributes to the field. Suggested length: 300–500 words.
+<!--
+INSTRUCTIONS:
+- Identify gaps in the existing literature that the study aims to fill
+- Justify the necessity of the research and its contribution to the field
+- Avoid technical jargon and focus on clarity and relevance
+- Include citations to relevant sources to support the justification
+-->
+[Insert content here]
+- Gap 1: [e.g., While several studies have applied machine learning to predict customer churn, there is a lack of research specifically focused on the telecommunications industry, which has unique characteristics and challenges that may impact churn prediction.]
+- Gap 2: [e.g., Many existing studies have focused on traditional machine learning models, with limited research on the application of more advanced techniques such as deep learning or ensemble methods in the context of customer churn prediction.]
+- Gap 3: [e.g., There is a need for more research that integrates both quantitative and qualitative data to provide a more comprehensive understanding of the factors driving customer churn and to develop more effective predictive models.]
+- Justification: [e.g., This study aims to address these gaps by applying a range of machine learning techniques to a large dataset of telecommunications customers, with the goal of improving the accuracy of churn prediction and providing actionable insights for reducing churn in the industry. By filling these gaps, this research will contribute to the field by advancing our understanding of customer churn in the telecommunications industry and by demonstrating the potential of advanced machine learning techniques for improving predictive performance in this context.]
+```
+
+### Example preloaded .qmd template for the data description section (04_0_data_description.qmd):
+```markdown
+# Section 4.0: Data Description & Preprocessing
+This section should provide a detailed description of the data used in the study, including its source, structure, and any preprocessing steps that were taken to prepare the data for analysis. It should explain the characteristics of the dataset, such as the number of observations, the types of variables included, and any relevant metadata that provides context for the data. The data description should also include any preprocessing steps that were taken to clean, transform, or prepare the data for analysis, such as handling missing values, encoding categorical variables, or normalizing numerical features. This section should be written in a way that is accessible to a wide audience, avoiding technical jargon and focusing on providing a clear and comprehensive overview of the data used in the study. It should also include any relevant citations or references to support the information presented, ensuring that it is grounded in established knowledge and research in the field. The data description should provide a clear and comprehensive overview of the dataset, its characteristics, and the preprocessing steps taken, providing a foundation for the analysis and interpretation of the findings in later sections. Suggested length: 400–600 words.
+<!--
+INSTRUCTIONS:
+- Provide a detailed description of the data used in the study, including source and structure
+- Explain characteristics of the dataset, such as number of observations and types of variables
+- Describe any preprocessing steps taken to prepare the data for analysis
+- Avoid technical jargon and focus on clarity and accessibility
+- Include citations or references to support the information presented
+- Provide a clear overview of the dataset and preprocessing steps to set the foundation for analysis and interpretation of findings
+-->
+[Insert content here]
+- Data Source: [e.g., The dataset used in this study was obtained from a telecommunications company and includes customer information, service usage data, and churn status for a period of one year.]
+- Data Structure: [e.g., The dataset consists of 100,000 observations and includes 20 variables, such as customer demographics (age, income level), service usage metrics (call duration, data usage), and churn status (binary variable indicating whether the customer churned or not).]
+- Preprocessing Steps: [e.g., The data was cleaned by handling missing values through imputation, encoding categorical variables using one-hot encoding, and normalizing numerical features to ensure that they are on a comparable scale for analysis. Additionally, outliers were identified and handled appropriately to prevent them from skewing the analysis.]
+```
+
+### Example preloaded .qmd template for the exploratory data overview section (04_1_data_overview.qmd):
+```markdown
+# 4.1 Dataset Overview
+This section should provide an overview of the dataset, including any relevant summary statistics, distributions, or visualizations that help to characterize the data and provide insights into its structure and characteristics. It should include descriptive statistics such as mean, median, standard deviation, and range for numerical variables, as well as frequency counts and percentages for categorical variables. The dataset overview should also include any relevant visualizations, such as histograms, box plots, or scatter plots, that help to illustrate the distribution of the data and any relationships between variables. This section should be written in a way that is accessible to a wide audience, avoiding technical jargon and focusing on providing a clear and comprehensive overview of the dataset. It should also include any relevant citations or references to support the information presented, ensuring that it is grounded in established knowledge and research in the field. The dataset overview should provide a clear and comprehensive understanding of the data being analyzed, setting the stage for the analysis and interpretation of the findings in later sections. Suggested length: 400–600 words.
+<!--
+INSTRUCTIONS:
+- Provide an overview of the dataset, including summary statistics and visualizations
+- Include descriptive statistics for numerical and categorical variables
+- Use visualizations to illustrate the distribution of the data and relationships between variables
+- Avoid technical jargon and focus on clarity and accessibility
+- Include citations or references to support the information presented
+- Provide a clear understanding of the dataset to set the stage for analysis and interpretation of findings
+-->
+[Insert content here]
+- Summary Statistics: [e.g., The average age of customers in the dataset is 35 years, with a standard deviation of 10 years. The median income level is $50,000, with a range of $20,000 to $100,000. The churn rate in the dataset is 20%, with 20,000 customers identified as churned and 80,000 customers identified as retained.]
+- Visualizations: [e.g., A histogram of customer ages shows a normal distribution, while a box plot of income levels reveals the presence of outliers. A scatter plot of call duration versus data usage indicates a positive correlation between these two variables, suggesting that customers who use more data also tend to have longer call durations.]
+```
+
+### Example preloaded .qmd template for the feature description section (04_2_feature_description.qmd):
+```markdown
+# 4.2 Feature Description Table & Engineering
+This section should provide a detailed description of the features used in the analysis, including their definitions, types, and any relevant transformations or engineering that was performed on the features. It should include a table that lists each feature, along with its definition, data type (e.g., numerical, categorical),and any transformations or engineering that were applied to the feature (e.g., log transformation, one-hot encoding). The feature description should also include any relevant visualizations or examples that help to illustrate the characteristics of the features and how they were transformed or engineered for analysis. This section should be written in a way that is accessible to a wide audience, avoiding technical jargon and focusing on providing a clear and comprehensive overview of the features used in the analysis. It should also include any relevant citations or references to support the information presented, ensuring that it is grounded in established knowledge and research in the field. The feature description should provide a clear and comprehensive understanding of the features used in the analysis, setting the stage for the analysis and interpretation of the findings in later sections. Suggested length: 400–600 words.
+<!--
+INSTRUCTIONS:
+- Provide a detailed description of the features used in the analysis, including definitions and types
+- Include a table listing each feature, its definition, data type, and any transformations or engineering applied
+- Use visualizations or examples to illustrate the characteristics of the features and transformations
+- Avoid technical jargon and focus on clarity and accessibility
+- Include citations or references to support the information presented
+- Provide a clear understanding of the features used in the analysis to set the stage for analysis and interpretation of findings
+-->
+[Insert content here]
+| Feature Name | Definition | Data Type | Transformations/Engineering |
+|--------------|------------|-----------|-----------------------------|
+| Age          | Age of the customer in years | Numerical | None |
+| Income Level | Annual income of the customer | Numerical | Log transformation applied to reduce skewness |
+| Call Duration | Total duration of calls made by the customer in minutes | Numerical | None |
+| Data Usage | Total data usage by the customer in gigabytes | Numerical | None |
+| Churn Status | Binary variable indicating whether the customer churned (1) or not (0) | Categorical | One-hot encoding applied for analysis |
+| Service Quality | Customer's rating of service quality on a scale of 1 to 5 | Numerical | None |
+| Contract Type | Type of contract the customer has (e.g., month-to-month, one-year, two-year) | Categorical | One-hot encoding applied for analysis |
+| Customer Engagement | Measure of customer engagement based on interactions with the company (e.g., number of support tickets, frequency of communication) | Numerical | None |
+```
+
+### Example preloaded .qmd template for the data quality section (04_3_data_quality.qmd):
+```markdown
+# 4.3 Data Quality & Issues
+This section should assess the quality of the data used in the study, identifying any issues or challenges that may impact the analysis and interpretation of the findings. It should evaluate the completeness, accuracy, and reliability of the data, identifying any missing values, outliers, or inconsistencies that may need to be addressed in the analysis. The data quality assessment should also include any relevant visualizations or tables that help to illustrate the data quality issues and their potential impact on the analysis. This section should be written in a way that is accessible to a wide audience, avoiding technical jargon and focusing on providing a clear and comprehensive overview of the data quality issues and their implications for the analysis. It should also include any relevant citations or references to support the information presented, ensuring that it is grounded in established knowledge and research in the field. The data quality assessment should provide a clear understanding of the issues and challenges associated with the data, allowing readers to interpret the findings in the context of these limitations and to understand the steps taken to address these issues in the analysis. Suggested length: 400–600 words.
+<!--
+INSTRUCTIONS:
+- Assess the quality of the data, identifying issues that may impact analysis and interpretation
+- Evaluate completeness, accuracy, and reliability of the data, identifying missing values, outliers, or inconsistencies
+- Use visualizations or tables to illustrate data quality issues and their potential impact
+- Avoid technical jargon and focus on clarity and accessibility
+- Include citations or references to support the information presented
+- Provide a clear understanding of data quality issues and their implications for analysis and interpretation of findings
+-->
+[Insert content here]
+- Data Completeness: [e.g., The dataset contains some missing values, particularly in the income level variable, which may impact the analysis. Imputation techniques were applied to address these missing values, but it is important to acknowledge that this may introduce some bias into the analysis.]
+- Data Accuracy: [e.g., There are some inconsistencies in the data, such as customers with negative call durations or data usage, which were identified as data entry errors. These inconsistencies were addressed by removing the affected observations from the analysis, but it is important to consider the potential impact of these errors on the findings.]
+- Data Reliability: [e.g., The data was collected from a single telecommunications company, which may limit the generalizability of the findings to other companies or industries. Additionally, the data may be subject to biases, such as selection bias or reporting bias, which could impact the reliability of the findings.]
+- Visualizations: [e.g., A histogram of the income level variable shows a significant number of missing values, while a box plot of call duration reveals the presence of outliers. A scatter plot of data usage versus call duration indicates some inconsistencies in the data, with some customers having negative values for these variables, suggesting data entry errors.]
+```
+
+### Example preloaded .qmd template for the data preprocessing section (04_4_data_preprocessing.qmd):
+```markdown
+# 4.4 Data Preprocessing Steps
+This section should provide a detailed description of the data preprocessing steps that were taken to prepare the data for analysis. It should explain the specific techniques and methods used to clean, transform, and prepare the data, such as handling missing values, encoding categorical variables, normalizing numerical features, and addressing outliers. The data preprocessing steps should be described in a way that is accessible to a wide audience,avoiding technical jargon and focusing on providing a clear and comprehensive overview of the preprocessing techniques used. This section should also include any relevant visualizations or examples that help to illustrate the preprocessing steps and their impact on the data, making it easier for readers to understand the transformations that were applied to the data. It should also include any relevant citations or references to support the information presented, ensuring that it is grounded in established knowledge and research in the field. The data preprocessing description should provide a clear and comprehensive understanding of the techniques used to prepare the data for analysis, allowing readers to understand the steps taken to ensure the quality and suitability of the data for analysis and interpretation of the findings in later sections. Suggested length: 400–600 words.
+<!--
+INSTRUCTIONS:
+- Provide a detailed description of the data preprocessing steps taken to prepare the data for analysis
+- Explain techniques used to clean, transform, and prepare the data (e.g., handling missing values, encoding categorical variables, normalizing numerical features, addressing outliers)
+- Avoid technical jargon and focus on clarity and accessibility
+- Include visualizations or examples to illustrate preprocessing steps and their impact on the data
+- Include citations or references to support the information presented
+- Provide a clear understanding of preprocessing techniques used to prepare the data for analysis and interpretation of findings
+-->
+[Insert content here]
+- Handling Missing Values: [e.g., Missing values in the income level variable were addressed using mean imputation, where the missing values were replaced with the mean income level of the dataset. This technique was chosen for its simplicity and effectiveness in maintaining the overall distribution of the data, although it is important to acknowledge that it may introduce some bias into the analysis.]
+- Encoding Categorical Variables: [e.g., Categorical variables such as churn status and contract type were encoded using one-hot encoding, which creates binary variables for each category. This technique allows for the inclusion of categorical variables in machine learning models while avoiding issues with ordinal encoding and ensuring that the models can capture the relationships between categories effectively.]
+- Normalizing Numerical Features: [e.g., Numerical features such as income level were normalized using a log transformation to reduce skewness and improve the performance of machine learning models. This transformation helps to ensure that the numerical features are on a comparable scale and can improve the accuracy of the models.]
+- Addressing Outliers: [e.g., Outliers in the call duration variable were identified using box plots and were addressed by capping the values at the 95th percentile. This technique helps to reduce the influence of extreme values on the analysis while retaining the overall structure of the data.]
+- Visualizations: [e.g., A histogram of the income level variable before and after imputation shows how the missing values were addressed, while a box plot of call duration before and after outlier treatment illustrates the impact of capping on the distribution of the data.]
+- Train / test split: [e.g., The dataset was split into a training set (80%) and a test set (20%) to allow for the evaluation of machine learning models on unseen data. This split helps to ensure that the models are evaluated on their ability to generalize to new data, providing a more accurate assessment of their performance.]
+```
+
+
 
