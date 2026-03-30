@@ -1,5 +1,41 @@
 #!/usr/bin/env bash
 
+# mkquarto_report
+#
+# Purpose:
+#   Scaffold a PDF-first Quarto technical report project from documented templates.
+#
+# How To Use This Script:
+#   1) Run from the directory where you want the project folder created.
+#   2) Pass a single project name argument.
+#   3) The script slugifies that argument to name the target folder.
+#
+#   Examples:
+#     ./mkquarto_report Real-Estate-Prediction
+#     ./mkquarto_report --fast-validate Mortgage-Analytics
+#     ./mkquarto_report --force --validation full Customer-Churn-Study
+#
+# Runtime Requirements:
+#   - Quarto must be installed and available on PATH.
+#   - A LaTeX engine is required for full PDF validation
+#     (xelatex, lualatex, or pdflatex).
+#
+# Behavior Contract:
+#   - Default mode is idempotent: existing files are skipped with warnings.
+#   - --force only overwrites files tracked in the manifest:
+#       .mkquarto/generated_files_manifest.txt
+#   - User-created/untracked files are not overwritten by --force.
+#
+# Validation Modes:
+#   - full (default): renders report.qmd to PDF.
+#   - fast: runs 'quarto check' only.
+#   - none: skips validation.
+#
+# Exit Codes:
+#   - 0: scaffold created and selected validation passed (or was skipped).
+#   - 1: scaffold created but dependency/validation failure occurred.
+#   - 2: invalid CLI usage or invalid argument values.
+
 set -euo pipefail
 
 SCRIPT_NAME="$(basename "$0")"
