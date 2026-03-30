@@ -94,6 +94,7 @@ The bash script should be designed with the following specifications:
 - The script should ensure compatibility with PDF rendering, avoiding any unsupported markdown features that could cause build failures.
 - The script should include error handling to manage potential issues during execution, such as missing dependencies or permission errors.
 - The script should provide clear output messages to indicate the progress of the project scaffolding process and any issues encountered.
+- The script should Include verbose logging within the script to give users a better understanding of its progress.
 - The script should be well-documented with comments explaining each step for maintainability and clarity.
 - The script should be designed to be easily customizable for different project needs while adhering to the core structure and requirements outlined above.
 - The script should be efficient and optimized for performance, minimizing unnecessary operations and ensuring a smooth user experience.
@@ -139,6 +140,11 @@ execute:
 The README.md file should provide clear instructions on how to use the generated project, including how to build and render the report, as well as any necessary prerequisites or setup steps. The README should also include an overview of the project structure, a description of the included templates, and any relevant information about the project requirements and constraints. The README should be well-organized and easy to navigate, providing users with a clear understanding of how to work with the generated project and create their own professional technical reports using Quarto. The README should also include troubleshooting guidance for common issues that may arise during the build and render process, ensuring that users can successfully generate their reports even if they encounter challenges along the way. The README should be included in the project scaffolding process, ensuring that it is generated correctly and placed in the appropriate location within the project structure, providing users with a comprehensive guide to using the generated project effectively and efficiently to create high-quality PDF reports with Quarto. The README should be designed to be easily maintainable and should follow best practices for documentation, ensuring that it remains relevant and useful as the project evolves and as new features or requirements are added in the future. The README should also be designed to be easily customizable, allowing users to modify the content and structure as needed to suit their specific needs and preferences while still adhering to the core requirements and guidelines outlined in the project specifications. The README should be tested to ensure that it provides clear and accurate instructions, and that it effectively guides users through the process of building and rendering their reports using the generated project, while also providing a comprehensive overview of the project structure, templates, and requirements to help users understand how to work with the project effectively and efficiently to create professional technical reports using Quarto.
 
 - Provide a troubleshooting section that addresses common build errors users might encounter (e.g., missing dependencies, errors in LaTeX rendering).
+- Include a section for troubleshooting section is important and should include a broader range of issues users might encounter, such as problems with paths or missing files.
+- include a section on how to customize the project structure or templates for different types of reports or specific use cases, while still adhering to the core requirements and guidelines outlined in the project specifications. This can help users understand how to adapt the generated project to their specific needs while still maintaining a professional and consistent output when building and rendering their reports using Quarto.
+- Include a section for the `references.bib` file, explaining how the section files should be included, as this is key for users to understand the structure and relationships between files.
+- Within the `references.bib` section, provide clear instructions on how to format references correctly, ensuring that users can easily understand how to add their sources and ensure that they are properly cited in the final report. This can help users manage their references effectively and ensure that they are properly cited in the final output, contributing to the overall professionalism and quality of the generated PDF report using Quarto.
+- Also within the `references.bib` section, include instructions on how to handle multiple authors or multiple sources in a single citation.
 
 ### example README.md content (ensure to customize based on specific project requirements):
 ```markdown
@@ -252,6 +258,30 @@ The references.bib file should be included in the project scaffolding process an
   year         = {n.d.},
   howpublished = {\url{https://www.kaggle.com/datasets/blastchar/telco-customer-churn}},
   note         = {Kaggle dataset, accessed 2026-02-22}
+}
+
+@book{james2021data,
+  title={Data Science for Business},
+  author={James, Foster and Witten, Daniela and Hastie, Trevor and Tibshirani, Robert},
+  year={2021},
+  publisher={O'Reilly Media}
+}
+
+@conference{doe2022machine,
+  title={Machine Learning in Practice},
+  author={Doe, Jane and Smith, John},
+  booktitle={Proceedings of the International Conference on Machine Learning},
+  pages={789-1011},
+  year={2022},
+  organization={ICML}
+}
+
+@website{r2024quarto,
+  author       = {RStudio},
+  title        = {Quarto Documentation},
+  year         = {2024},
+  howpublished = {\url{https://quarto.org/docs/}},
+  note         = {Accessed 2024-06-01}
 }
 ```
 
