@@ -14,6 +14,6 @@ INSTRUCTIONS:
 - Include citations or references to support the scope and limitations outlined
 -->
 [Insert content here]
-- Scope: [e.g., The study will analyze customer data from a telecommunications company over a one-year period, focusing on factors contributing to customer churn (study) and evaluating machine learning models for prediction. The analysis will be limited to customers in the United States and will not include data from other geographic regions or industries.]
+- Scope: [e.g., The study will analyze customer data from a telecommunications company over a one-year period, focusing on factors contributing to customer churn ({title}) and evaluating machine learning models for prediction. The analysis will be limited to customers in the United States and will not include data from other geographic regions or industries.]
 - Limitations: [e.g., The study may be limited by the availability and quality of the data, potential biases in the sample, and methodological constraints that may impact the generalizability of the findings. Additionally, the study may not account for all potential factors contributing to customer churn, and the recommendations provided may not be applicable to all contexts or industries.]
 ```

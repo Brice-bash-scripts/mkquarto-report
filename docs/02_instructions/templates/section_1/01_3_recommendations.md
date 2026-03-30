@@ -14,7 +14,7 @@ INSTRUCTIONS:
 - Avoid technical jargon and focus on practical steps
 -->
 [Insert content here]
-- [Recommendation 1 — e.g., implement X to reduce $study$ rate by Y%]
-- [Recommendation 2 — e.g., focus on improving contract type to reduce $study$ rate]
+- [Recommendation 1 — e.g., implement X to reduce ${study}$ rate by Y%]
+- [Recommendation 2 — e.g., focus on improving contract type to reduce ${study}$ rate]
 - [Recommendation 3 — e.g., further investigate top predictors to identify additional opportunities for improvement]
 ```

@@ -106,6 +106,29 @@ The bash script should be designed with the following specifications:
 - The script should be designed to be secure, avoiding any potential vulnerabilities or risks associated with file creation and execution.
 - The script should be compatible with the latest versions of Quarto and any dependencies required for building the PDF output, ensuring that it remains functional as software updates are released.
 
+## 3.1 Running the Script to Generate the Project
+To create a new report using the `mkquarto_report` script, simply run the following command:
+```bash
+mkquarto_report Real-Estate-Prediction
+```
+This command will trigger the creation of a new report scaffold using "Real-Estate-Prediction" as the project name. The script will automatically replace placeholders for the report title with "Real Estate Prediction" in the relevant sections, such as the title page, metadata, and config files.
+
+What Happens:
+- The script generates a folder structure with all required files and directories.
+- It creates the main report.qmd file, along with the necessary sections in the content/ folder.
+- All instances where the report title is required (e.g., cover page, table of contents) will use "Real Estate Prediction" automatically.
+- The configuration files (like _quarto.yml) will also be updated with the title "Real Estate Prediction."
+
+Customizing the Title:
+
+If you want to customize the report title, simply modify the first argument passed to the script. For example:
+```bash
+mkquarto_report Mortgage-Analytics
+```
+- This will generate the report scaffold with the title "Mortgage Analytics" instead.
+- This way, the user will clearly understand the process of creating a report, how the script dynamically replaces the title, and how they can easily customize it for future projects.
+
+
 ## 4. Quarto Configuration (_quarto.yml)
 The _quarto.yml file should be configured to support PDF output and include any necessary settings for the project. This may include specifying the output format, setting up references, and defining any custom styles or templates that should be used in the report. The configuration should be designed to ensure that the generated PDF is professional and adheres to the formatting standards outlined in the project requirements. The configuration should also be flexible enough to allow for future modifications or additions as needed, while maintaining compatibility with the overall project structure and requirements. The _quarto.yml file should be well-documented with comments explaining each setting and its purpose, making it easier for users to understand and modify as needed. The configuration should also be tested to ensure that it works correctly and produces the desired output when the report is built and rendered. The _quarto.yml file should be included in the project scaffolding process, ensuring that it is generated correctly and placed in the appropriate location within the project structure. The configuration should be designed to be easily maintainable and should follow best practices for Quarto configuration, ensuring that it remains functional and effective as the project evolves and as new features or requirements are added in the future.
 

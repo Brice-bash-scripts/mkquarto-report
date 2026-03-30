@@ -13,10 +13,10 @@ INSTRUCTIONS:
 - Include citations or references to support objectives and research questions
 -->
 [Insert content here]
-- Objective 1: [e.g., Analyze the factors contributing to $study$ rate in the telecommunications industry]
-- Objective 2: [e.g., Evaluate the performance of different machine learning models in predicting $study$]
-- Objective 3: [e.g., Provide actionable recommendations to reduce $study$ rate based on key findings]
-- Research Question 1: [e.g., What are the main factors contributing to $study$ rate in the telecommunications industry?]
-- Research Question 2: [e.g., Which machine learning models perform best in predicting $study$?]
-- Research Question 3: [e.g., What actionable recommendations can be made to reduce $study$ rate based on the key findings?]
+- Objective 1: [e.g., Analyze the factors contributing to ${title}$ rate in the telecommunications industry]
+- Objective 2: [e.g., Evaluate the performance of different machine learning models in predicting ${title}$]
+- Objective 3: [e.g., Provide actionable recommendations to reduce ${title}$ rate based on key findings]
+- Research Question 1: [e.g., What are the main factors contributing to ${title}$ rate in the telecommunications industry?]
+- Research Question 2: [e.g., Which machine learning models perform best in predicting ${title}$?]
+- Research Question 3: [e.g., What actionable recommendations can be made to reduce ${title}$ rate based on the key findings?]
 ```
