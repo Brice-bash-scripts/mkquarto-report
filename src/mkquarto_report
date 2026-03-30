@@ -1,0 +1,552 @@
+#!/usr/bin/env bash
+
+# mkquarto_report
+#
+# Purpose:
+#   Scaffold a PDF-first Quarto technical report project from documented templates.
+#
+# How To Use This Script:
+#   1) Run from the directory where you want the project folder created.
+#   2) Pass a single project name argument.
+#   3) The script slugifies that argument to name the target folder.
+#
+#   Examples:
+#     ./mkquarto_report Real-Estate-Prediction
+#     ./mkquarto_report --fast-validate Mortgage-Analytics
+#     ./mkquarto_report --force --validation full Customer-Churn-Study
+#
+# Runtime Requirements:
+#   - Quarto must be installed and available on PATH.
+#   - A LaTeX engine is required for full PDF validation
+#     (xelatex, lualatex, or pdflatex).
+#
+# Behavior Contract:
+#   - Default mode is idempotent: existing files are skipped with warnings.
+#   - --force only overwrites files tracked in the manifest:
+#       .mkquarto/generated_files_manifest.txt
+#   - User-created/untracked files are not overwritten by --force.
+#
+# Validation Modes:
+#   - full (default): renders report.qmd to PDF.
+#   - fast: runs 'quarto check' only.
+#   - none: skips validation.
+#
+# Exit Codes:
+#   - 0: scaffold created and selected validation passed (or was skipped).
+#   - 1: scaffold created but dependency/validation failure occurred.
+#   - 2: invalid CLI usage or invalid argument values.
+
+set -euo pipefail
+
+SCRIPT_NAME="$(basename "$0")"
+
+FORCE=0
+VALIDATION_MODE="full"
+PROJECT_ARG=""
+
+log_info() {
+	printf '[INFO] %s\n' "$1"
+}
+
+log_warn() {
+	printf '[WARN] %s\n' "$1" >&2
+}
+
+log_error() {
+	printf '[ERROR] %s\n' "$1" >&2
+}
+
+usage() {
+	cat <<EOF
+Usage:
+	$SCRIPT_NAME [options] <project-name>
+
+Description:
+	Generate a Quarto PDF-first technical report scaffold.
+
+Options:
+	-f, --force               Overwrite only previously generated files (tracked by manifest).
+	--validation <mode>       Validation mode: full | fast | none (default: full)
+	--fast-validate           Shortcut for --validation fast
+	--no-validate             Shortcut for --validation none
+	-h, --help                Show this help text
+
+Examples:
+	$SCRIPT_NAME Real-Estate-Prediction
+	$SCRIPT_NAME --fast-validate Mortgage-Analytics
+	$SCRIPT_NAME --force --validation full Customer-Churn-Study
+EOF
+}
+
+slugify() {
+	local raw="$1"
+	printf '%s' "$raw" \
+		| tr '[:upper:]' '[:lower:]' \
+		| sed -E 's/[^a-z0-9]+/-/g; s/^-+//; s/-+$//; s/-+/-/g'
+}
+
+to_human_title() {
+	local raw="$1"
+	printf '%s' "$raw" \
+		| sed -E 's/[-_]+/ /g; s/ +/ /g; s/^ //; s/ $//' \
+		| awk '{
+				for (i=1; i<=NF; i++) {
+					$i=toupper(substr($i,1,1)) tolower(substr($i,2));
+				}
+				print
+			}'
+}
+
+require_command() {
+	local cmd="$1"
+	local message="$2"
+	if ! command -v "$cmd" >/dev/null 2>&1; then
+		log_error "$message"
+		exit 1
+	fi
+}
+
+contains_prev_manifest_path() {
+	local rel="$1"
+	[[ -n "${PREV_MANAGED[$rel]:-}" ]]
+}
+
+write_managed_file() {
+	local rel_path="$1"
+	local content="$2"
+	local abs_path="$PROJECT_DIR/$rel_path"
+
+	GENERATED_PATHS+=("$rel_path")
+	mkdir -p "$(dirname "$abs_path")"
+
+	if [[ -f "$abs_path" ]]; then
+		if [[ "$FORCE" -eq 1 ]] && contains_prev_manifest_path "$rel_path"; then
+			printf '%s\n' "$content" >"$abs_path"
+			log_info "Overwrote generated file: $rel_path"
+			return
+		fi
+
+		log_warn "Skipping existing file: $rel_path"
+		return
+	fi
+
+	printf '%s\n' "$content" >"$abs_path"
+	log_info "Created file: $rel_path"
+}
+
+template_to_qmd_content() {
+	local template_path="$1"
+	local content
+
+	content="$(cat "$template_path")"
+	content="${content//'{{title}}'/$HUMAN_TITLE}"
+	content="${content//'${title}'/$HUMAN_TITLE}"
+
+	printf '%s' "$content"
+}
+
+copy_template_dir() {
+	local src_dir="$1"
+	local dst_dir="$2"
+	local file
+
+	for file in "$TEMPLATE_ROOT/$src_dir"/*.md; do
+		[[ -f "$file" ]] || continue
+		local base
+		base="$(basename "$file" .md)"
+		local dst="$dst_dir/$base.qmd"
+		local rendered
+		rendered="$(template_to_qmd_content "$file")"
+		write_managed_file "$dst" "$rendered"
+	done
+}
+
+copy_template_file() {
+	local src_rel="$1"
+	local dst_rel="$2"
+
+	local src="$TEMPLATE_ROOT/$src_rel"
+	if [[ ! -f "$src" ]]; then
+		log_error "Missing template file: $src"
+		exit 1
+	fi
+
+	local rendered
+	rendered="$(template_to_qmd_content "$src")"
+	write_managed_file "$dst_rel" "$rendered"
+}
+
+create_directories() {
+	local dirs=(
+		"content/00_frontmatter"
+		"content/section_01"
+		"content/section_02"
+		"content/section_03"
+		"content/section_04"
+		"content/section_05"
+		"content/section_06"
+		"content/section_07"
+		"content/section_08"
+		"content/section_09"
+		"content/section_10"
+		"content/figures"
+		"content/appendices"
+		"assets/images"
+		"assets/tables"
+		"output"
+		".mkquarto"
+	)
+
+	local d
+	for d in "${dirs[@]}"; do
+		mkdir -p "$PROJECT_DIR/$d"
+	done
+}
+
+generate_report_qmd() {
+	local report_content
+	report_content="---
+title: \"$HUMAN_TITLE\"
+---
+
+{{< include content/00_frontmatter/00_0_cover.qmd >}}
+
+{{< include content/00_frontmatter/00_1_structure_overview.qmd >}}
+
+{{< include content/section_01/01_0_executive_summary.qmd >}}
+{{< include content/section_01/01_1_purpose_of_study.qmd >}}
+{{< include content/section_01/01_2_key_findings.qmd >}}
+{{< include content/section_01/01_3_recommendations.qmd >}}
+
+{{< include content/section_02/02_0_introduction.qmd >}}
+{{< include content/section_02/02_1_background.qmd >}}
+{{< include content/section_02/02_2_definitions.qmd >}}
+{{< include content/section_02/02_3_objectives.qmd >}}
+{{< include content/section_02/02_4_scope.qmd >}}
+{{< include content/section_02/02_5_report_structure.qmd >}}
+
+{{< include content/section_03/03_0_literature_review.qmd >}}
+{{< include content/section_03/03_1_industry_analysis.qmd >}}
+{{< include content/section_03/03_2_key_drivers.qmd >}}
+{{< include content/section_03/03_3_ml_approaches.qmd >}}
+{{< include content/section_03/03_4_gaps_justification.qmd >}}
+
+{{< include content/section_04/04_0_data_description.qmd >}}
+{{< include content/section_04/04_1_data_overview.qmd >}}
+{{< include content/section_04/04_2_feature_description.qmd >}}
+{{< include content/section_04/04_3_data_quality.qmd >}}
+{{< include content/section_04/04_4_data_preprocessing.qmd >}}
+
+{{< include content/section_05/05_0_eda.qmd >}}
+{{< include content/section_05/05_1_univariate_analysis.qmd >}}
+{{< include content/section_05/05_2_bivariate_analysis.qmd >}}
+{{< include content/section_05/05_3_multivariate_analysis.qmd >}}
+{{< include content/section_05/05_4_correlation_analysis.qmd >}}
+{{< include content/section_05/05_5_eda_summary.qmd >}}
+
+{{< include content/section_06/06_0_methodology_model.qmd >}}
+{{< include content/section_06/06_1_approach_methodology.qmd >}}
+{{< include content/section_06/06_2_algorithms_selection.qmd >}}
+{{< include content/section_06/06_3_evaluate_metrics.qmd >}}
+{{< include content/section_06/06_4_hyperparameter_tuning.qmd >}}
+{{< include content/section_06/06_5_cross_validation.qmd >}}
+{{< include content/section_06/06_6_tools_libraries.qmd >}}
+{{< include content/section_06/06_7_methodology_summary.qmd >}}
+
+{{< include content/section_07/07_0_results_evaluation.qmd >}}
+{{< include content/section_07/07_1_model_performance_comparison.qmd >}}
+{{< include content/section_07/07_2_confusion_matrix.qmd >}}
+{{< include content/section_07/07_3_visualizations.qmd >}}
+{{< include content/section_07/07_4_feature_importance.qmd >}}
+{{< include content/section_07/07_5_results_summary.qmd >}}
+
+{{< include content/section_08/08_0_discussion.qmd >}}
+{{< include content/section_08/08_1_interpretation_results.qmd >}}
+{{< include content/section_08/08_2_connect_literature.qmd >}}
+{{< include content/section_08/08_3_limitations.qmd >}}
+{{< include content/section_08/08_4_discussion_summary.qmd >}}
+
+{{< include content/section_09/09_0_conclusions_recommendations.qmd >}}
+{{< include content/section_09/09_1_conclusions.qmd >}}
+{{< include content/section_09/09_2_recommendations.qmd >}}
+{{< include content/section_09/09_3_future_work.qmd >}}
+
+{{< include content/figures/figures.qmd >}}
+{{< include content/appendices/appendices.qmd >}}
+
+{{< include content/section_10/10_0_references.qmd >}}"
+
+	write_managed_file "report.qmd" "$report_content"
+}
+
+generate_quarto_yml() {
+	local yml_content
+	yml_content="project:
+	title: \"$HUMAN_TITLE\"
+	output-dir: output
+	render:
+		- report.qmd
+
+bibliography: references.bib
+
+format:
+	pdf:
+		toc: true
+		number-sections: true
+		documentclass: article
+		top-level-division: section
+
+execute:
+	enabled: false"
+
+	write_managed_file "_quarto.yml" "$yml_content"
+}
+
+generate_references_bib() {
+	local bib_content
+	bib_content="@misc{quarto_docs,
+	author       = {Posit},
+	title        = {Quarto Documentation},
+	year         = {2026},
+	howpublished = {\\url{https://quarto.org/docs/}},
+	note         = {Accessed 2026-03-29}
+}"
+
+	write_managed_file "references.bib" "$bib_content"
+}
+
+generate_readme() {
+	local readme_content
+	readme_content="# $HUMAN_TITLE
+
+This project was scaffolded with $SCRIPT_NAME.
+
+## Prerequisites
+
+- Quarto CLI installed and available on PATH
+- A LaTeX engine for PDF rendering (TinyTeX is recommended)
+
+## Render The Report
+
+From this project directory, run:
+
+\`\`\`bash
+quarto render report.qmd --to pdf
+\`\`\`
+
+Generated output is written to the output directory.
+
+## Structure Overview
+
+- report.qmd: Main entry point, includes all section files
+- _quarto.yml: Quarto configuration
+- references.bib: Bibliography database
+- content/: Report section files
+- assets/: Images and tables
+- output/: Rendered artifacts
+
+## Notes
+
+- The table of contents is controlled in _quarto.yml.
+- Use section files in content/ for report content updates.
+"
+
+	write_managed_file "README.md" "$readme_content"
+}
+
+write_manifest() {
+	local manifest_rel=".mkquarto/generated_files_manifest.txt"
+	local manifest_abs="$PROJECT_DIR/$manifest_rel"
+
+	mkdir -p "$(dirname "$manifest_abs")"
+	printf '%s\n' "${GENERATED_PATHS[@]}" | sort -u >"$manifest_abs"
+	log_info "Updated manifest: $manifest_rel"
+}
+
+check_latex_engine() {
+	if command -v xelatex >/dev/null 2>&1; then
+		return 0
+	fi
+	if command -v lualatex >/dev/null 2>&1; then
+		return 0
+	fi
+	if command -v pdflatex >/dev/null 2>&1; then
+		return 0
+	fi
+	return 1
+}
+
+run_validation() {
+	local status=0
+
+	case "$VALIDATION_MODE" in
+		none)
+			log_info "Validation skipped (--validation none)."
+			return 0
+			;;
+		fast)
+			log_info "Running fast validation: quarto check"
+			if ! (cd "$PROJECT_DIR" && quarto check); then
+				status=1
+			fi
+			;;
+		full)
+			log_info "Running full validation: quarto render report.qmd --to pdf"
+			if ! (cd "$PROJECT_DIR" && quarto render report.qmd --to pdf); then
+				status=1
+			fi
+			;;
+		*)
+			log_error "Unknown validation mode: $VALIDATION_MODE"
+			return 2
+			;;
+	esac
+
+	return "$status"
+}
+
+parse_args() {
+	while [[ $# -gt 0 ]]; do
+		case "$1" in
+			-f|--force)
+				FORCE=1
+				shift
+				;;
+			--validation)
+				if [[ $# -lt 2 ]]; then
+					log_error "--validation requires a value: full | fast | none"
+					exit 2
+				fi
+				VALIDATION_MODE="$2"
+				shift 2
+				;;
+			--fast-validate)
+				VALIDATION_MODE="fast"
+				shift
+				;;
+			--no-validate)
+				VALIDATION_MODE="none"
+				shift
+				;;
+			-h|--help)
+				usage
+				exit 0
+				;;
+			--)
+				shift
+				break
+				;;
+			-* )
+				log_error "Unknown option: $1"
+				usage
+				exit 2
+				;;
+			*)
+				if [[ -n "$PROJECT_ARG" ]]; then
+					log_error "Only one project-name argument is allowed."
+					usage
+					exit 2
+				fi
+				PROJECT_ARG="$1"
+				shift
+				;;
+		esac
+	done
+
+	if [[ $# -gt 0 ]]; then
+		log_error "Unexpected trailing arguments: $*"
+		usage
+		exit 2
+	fi
+
+	if [[ -z "$PROJECT_ARG" ]]; then
+		log_error "project-name is required."
+		usage
+		exit 2
+	fi
+
+	case "$VALIDATION_MODE" in
+		full|fast|none) ;;
+		*)
+			log_error "Invalid validation mode: $VALIDATION_MODE (expected: full|fast|none)"
+			exit 2
+			;;
+	esac
+}
+
+main() {
+	parse_args "$@"
+
+	require_command "quarto" "Quarto is required. Install Quarto and retry."
+
+	SLUG_TITLE="$(slugify "$PROJECT_ARG")"
+	if [[ -z "$SLUG_TITLE" ]]; then
+		log_error "Could not derive a valid slug from project-name: $PROJECT_ARG"
+		exit 2
+	fi
+
+	HUMAN_TITLE="$(to_human_title "$PROJECT_ARG")"
+
+	SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+	REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+	TEMPLATE_ROOT="$REPO_ROOT/docs/02_instructions/templates"
+
+	if [[ ! -d "$TEMPLATE_ROOT" ]]; then
+		log_error "Template root not found: $TEMPLATE_ROOT"
+		exit 1
+	fi
+
+	PROJECT_DIR="$PWD/$SLUG_TITLE"
+	MANIFEST_ABS="$PROJECT_DIR/.mkquarto/generated_files_manifest.txt"
+
+	declare -gA PREV_MANAGED=()
+	if [[ -f "$MANIFEST_ABS" ]]; then
+		while IFS= read -r line; do
+			[[ -n "$line" ]] && PREV_MANAGED["$line"]=1
+		done <"$MANIFEST_ABS"
+	fi
+
+	declare -ga GENERATED_PATHS=()
+
+	log_info "Creating scaffold in: $PROJECT_DIR"
+	log_info "Title: $HUMAN_TITLE"
+	log_info "Slug: $SLUG_TITLE"
+
+	if ! check_latex_engine; then
+		log_warn "No LaTeX engine detected (xelatex/lualatex/pdflatex). Full PDF validation may fail."
+	fi
+
+	create_directories
+
+	generate_report_qmd
+	generate_quarto_yml
+	generate_references_bib
+	generate_readme
+
+	copy_template_dir "frontmatter" "content/00_frontmatter"
+	copy_template_dir "section_1" "content/section_01"
+	copy_template_dir "section_2" "content/section_02"
+	copy_template_dir "section_3" "content/section_03"
+	copy_template_dir "section_4" "content/section_04"
+	copy_template_dir "section_5" "content/section_05"
+	copy_template_dir "section_6" "content/section_06"
+	copy_template_dir "section_7" "content/section_07"
+	copy_template_dir "section_8" "content/section_08"
+	copy_template_dir "section_9" "content/section_09"
+	copy_template_dir "section_10" "content/section_10"
+
+	copy_template_file "section_11/11_0_figures.md" "content/figures/figures.qmd"
+	copy_template_file "section_12/12_0_appendices.md" "content/appendices/appendices.qmd"
+
+	write_manifest
+
+	if run_validation; then
+		log_info "Scaffold complete. Validation passed."
+		exit 0
+	fi
+
+	log_error "Scaffold created, but validation failed."
+	exit 1
+}
+
+main "$@"
