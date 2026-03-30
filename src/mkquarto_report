@@ -281,23 +281,26 @@ title: \"$HUMAN_TITLE\"
 
 generate_quarto_yml() {
 	local yml_content
-	yml_content="project:
-	title: \"$HUMAN_TITLE\"
-	output-dir: output
-	render:
-		- report.qmd
+	yml_content=$(cat <<-EOF
+	project:
+	  title: "$HUMAN_TITLE"
+	  output-dir: output
+	  render:
+	    - report.qmd
 
-bibliography: references.bib
+	bibliography: references.bib
 
-format:
-	pdf:
-		toc: true
-		number-sections: true
-		documentclass: article
-		top-level-division: section
+	format:
+	  pdf:
+	    toc: true
+	    number-sections: true
+	    documentclass: article
+	    top-level-division: section
 
-execute:
-	enabled: false"
+	execute:
+	  enabled: false
+	EOF
+	)
 
 	write_managed_file "_quarto.yml" "$yml_content"
 }
